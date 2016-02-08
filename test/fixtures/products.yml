@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  sku: MyString
+  MFUPC: MyString
+  cost_price: 1.5
+  retail_price: 1.5
+  storage_type: MyString
+  avail_min_qty: 1
+  weight: 1.5
+  height: 1.5
+  width: 1.5
+  depth: 1.5
+  buffer_stock: 1
+  is_sample: false
+  company: MyString
+  merchant: MyString
+
+two:
+  name: MyString
+  sku: MyString
+  MFUPC: MyString
+  cost_price: 1.5
+  retail_price: 1.5
+  storage_type: MyString
+  avail_min_qty: 1
+  weight: 1.5
+  height: 1.5
+  width: 1.5
+  depth: 1.5
+  buffer_stock: 1
+  is_sample: false
+  company: MyString
+  merchant: MyString

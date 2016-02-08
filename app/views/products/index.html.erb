@@ -1,0 +1,51 @@
+<h1>Listing products</h1>
+
+<table class="table table-striped table-hovered">
+  <tr>
+    <th>Name</th>
+    <th>Sku</th>
+    <th>Mfupc</th>
+    <th>Cost price</th>
+    <th>Retail price</th>
+    <th>Storage type</th>
+    <th>Avail min qty</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Width</th>
+    <th>Depth</th>
+    <th>Buffer stock</th>
+    <th>Is sample</th>
+    <th>Company</th>
+    <th>Merchant</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.sku %></td>
+    <td><%= product.MFUPC %></td>
+    <td><%= product.cost_price %></td>
+    <td><%= product.retail_price %></td>
+    <td><%= product.storage_type %></td>
+    <td><%= product.avail_min_qty %></td>
+    <td><%= product.weight %></td>
+    <td><%= product.height %></td>
+    <td><%= product.width %></td>
+    <td><%= product.depth %></td>
+    <td><%= product.buffer_stock %></td>
+    <td><%= product.is_sample %></td>
+    <td><%= product.company %></td>
+    <td><%= product.merchant %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product', new_product_path %>

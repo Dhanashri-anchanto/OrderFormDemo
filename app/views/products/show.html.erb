@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+<p>
+<b>Product Image </b>
+<%= image_tag @product.image.url(:medium) %>
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Sku:</b>
+  <%= @product.sku %>
+</p>
+
+<p>
+  <b>Mfupc:</b>
+  <%= @product.MFUPC %>
+</p>
+
+<p>
+  <b>Cost price:</b>
+  <%= @product.cost_price %>
+</p>
+
+<p>
+  <b>Retail price:</b>
+  <%= @product.retail_price %>
+</p>
+
+<p>
+  <b>Storage type:</b>
+  <%= @product.storage_type %>
+</p>
+
+<p>
+  <b>Avail min qty:</b>
+  <%= @product.avail_min_qty %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @product.weight %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @product.height %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%= @product.width %>
+</p>
+
+<p>
+  <b>Depth:</b>
+  <%= @product.depth %>
+</p>
+
+<p>
+  <b>Buffer stock:</b>
+  <%= @product.buffer_stock %>
+</p>
+
+<p>
+  <b>Is sample:</b>
+  <%= @product.is_sample %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @product.company %>
+</p>
+
+<p>
+  <b>Merchant:</b>
+  <%= @product.merchant %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

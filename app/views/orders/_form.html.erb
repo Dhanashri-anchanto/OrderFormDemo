@@ -1,0 +1,78 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+    <%= f.label :customer_id %><br />
+    <%= f.number_field :customer_id %>
+  </div>
+    
+  <div class="field">
+    <%= f.label :order_no %><br />
+    <%= f.text_field :order_no %>
+  </div>
+  <div class="field">
+    <%= f.label :tracking_no %><br />
+    <%= f.text_field :tracking_no %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_date %><br />
+    <%= f.date_select :delivery_date %>
+  </div>
+  <div class="field">
+    <%= f.label :is_express_delivery %><br />
+    <%= f.check_box :is_express_delivery %>
+  </div>
+  <div class="field">
+    <%= f.label :is_customer_pickup %><br />
+    <%= f.check_box :is_customer_pickup %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_slot %><br />
+    <%= f.text_field :delivery_slot %>
+  </div>
+  <div class="field">
+    <%= f.label :carrier %><br />
+    <%= f.text_field :carrier %>
+  </div>
+  <div class="field">
+    <%= f.label :order_currency %><br />
+    <%= f.text_field :order_currency %>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Add Line Items to Cart</div>
+    <div class="panel-body">
+<%= f.fields_for :line_items do |builder| %>
+<%=  render 'line_item_fields', :f => builder %>
+<% end %>
+<%= link_to_add_fields "Add Line_items", f, :line_items %>
+</div>
+</div>
+  <div class="field">
+    <%= f.label :order_value %><br />
+    <%= f.text_field :order_value %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_collection %><br />
+    <%= f.text_field :payment_collection %>
+  </div>
+  <div class="field">
+    <%= f.label :special_instruction %><br />
+    <%= f.text_field :special_instruction %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+

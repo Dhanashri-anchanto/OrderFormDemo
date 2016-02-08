@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_no: MyString
+  tracking_no: MyString
+  delivery_date: 2016-02-08
+  is_express_delivery: false
+  is_customer_pickup: false
+  delivery_slot: MyString
+  carrier: MyString
+  order_currency: MyString
+  order_value: 1
+  payment_collection: MyString
+  special_instruction: MyString
+
+two:
+  order_no: MyString
+  tracking_no: MyString
+  delivery_date: 2016-02-08
+  is_express_delivery: false
+  is_customer_pickup: false
+  delivery_slot: MyString
+  carrier: MyString
+  order_currency: MyString
+  order_value: 1
+  payment_collection: MyString
+  special_instruction: MyString
