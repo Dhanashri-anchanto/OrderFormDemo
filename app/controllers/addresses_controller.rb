@@ -3,6 +3,8 @@ class AddressesController < ApplicationController
   # GET /addresses.json
   def index
     @addresses = Address.all
+   # @address = Address.where(:customer_id => @addresses.customer_id)
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,10 +16,11 @@ class AddressesController < ApplicationController
   # GET /addresses/1.json
   def show
     @address = Address.find(params[:id])
+    
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @address }
+      format.json { render json: @addresses }
     end
   end
 

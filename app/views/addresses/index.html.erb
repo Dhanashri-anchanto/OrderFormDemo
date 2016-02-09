@@ -19,7 +19,7 @@
 
 <% @addresses.each do |address| %>
   <tr>
-    <td><%= address.customer_id %></td>
+    <td><%= address.customer.name %></td>
     <td><%= address.street_name %></td>
     <td><%= address.area_name %></td>
     <td><%= address.landmark %></td>

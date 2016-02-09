@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])  #Customer.includes(:addresses).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

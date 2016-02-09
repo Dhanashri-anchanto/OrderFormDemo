@@ -1,3 +1,6 @@
+
+<%= text_field_tag :search, params[:search] %>
+   <p> <button data-toggle="collapse" data-target="#option", class = "btn btn-xs btn-warning">Search</button></p>
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -10,9 +13,37 @@
       </ul>
     </div>
   <% end %>
+
+
+ 
+  
+
+  
+  <div id="option" class="collapse">
+  <div class="row">
+   <div class="col-md-3">
+     <ul class="nav nav-pills nav-stacked">
+     <% @addresses.each do |add| %>
+       <li> <%= add.city %></li>
+       <% end %>
+      
+     </ul>
+   </div>
+     <div class="clearfix visible-lg"></div>
+ </div>
+</div>
+
+
 <div class="field">
     <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
+    <%#= f.number_field :customer_id %>
+        <%= f.text_field :customer_id, id: "input" %>
+         <%= f.text_field :customer_id, id: "name" %>
+         <%= f.text_field :customer_id, id: "email" %>
+         <%= f.text_field :customer_id, id: "mobile" %>
+
+         <%= f.text_field :customer_id, id: "add1" %>
+
   </div>
     
   <div class="field">
@@ -76,3 +107,42 @@
 
 
 
+
+<script>
+$("#input").keyup(function(){
+ var  x = document.getElementById("input").value;
+$.ajax({
+type: 'GET',
+url:  "/customers/" + x,
+data: {id: x},
+dataType: 'json',
+
+success: function(r){
+v = r['variant'];
+console.log(v)
+$("#name").val(r['name']);
+$("#mobile").val(r['mobile']);
+$("#email").val(r['email']);
+}
+});
+});
+
+
+
+$("#input").keyup(function(){
+ var  x = document.getElementById("input").value;
+$.ajax({
+type: 'GET',
+url:  "/addresses/" ,
+data: {customer_id: x},
+dataType: 'json',
+
+success: function(r){
+v = r['variant'];
+console.log(v)
+$("#add1").val(r['street_name']);
+
+}
+});
+});
+</script>

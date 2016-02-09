@@ -6,7 +6,7 @@
   <%= f.label :sku %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :sku %>
+  <%= f.text_field :sku, id: "sku" %>
 </div>
 </div>
 
@@ -15,7 +15,7 @@
   <%= f.label :description %>
  </div>
   <div class="col-sm-6">
-  <%= f.text_field :description %>
+  <%= f.text_field :description, id: "desc" %>
   </div>
 </div>
 
@@ -33,10 +33,31 @@
   <%= f.label :price %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :price %>
+  <%= f.text_field :price, id: "price" %>
  </div>
 </div>
-
+<%= f.hidden_field :product_name, id: "pname"%>
 
 </div>
 </div>
+
+<script>
+
+$("#sku").keyup(function(){
+ var  x = document.getElementById("sku").value;
+$.ajax({
+type: 'GET',
+url:  "/products/" + x,
+data: {id: x},
+dataType: 'json',
+
+success: function(r){
+v = r['variant'];
+console.log(v)
+$("#price").val(r['cost_price']);
+$("#pname").val(r['name']);
+
+}
+});
+});
+</script>
