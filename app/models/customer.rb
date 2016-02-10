@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
-	attr_accessible :email, :mobile, :name
+	attr_accessible :email, :mobile, :first_name, :last_name
 	attr_accessible :addresses_attributes , :orders_attributes
+	has_permalink :first_name
 
 	has_many :addresses, :dependent => :destroy
 	has_many :orders
@@ -8,7 +9,9 @@ class Customer < ActiveRecord::Base
 	accepts_nested_attributes_for :orders
 
 
-	
+  def to_param
+  permalink
+  end
 
 def self.search(search)
   if search

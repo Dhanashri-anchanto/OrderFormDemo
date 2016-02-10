@@ -1,18 +1,36 @@
 OrderDemo::Application.routes.draw do
+  get "home/index"
+
   resources :orders
 
 
   resources :line_items
 
 
-  resources :products
+  resources :products do
+    collection do
+        get 'product_details'
+       
+     end
+   end
 
 
   resources :addresses
+   # do
+   #  collection do
+   #      get 'customer_address'
+   #   end
+   # end
 
 
-  resources :customers
 
+  resources :customers do
+    collection do
+        get 'customer_details'
+         get 'customer_address'
+     end
+   end
+root to: "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

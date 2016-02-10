@@ -23,6 +23,9 @@ class AddressesController < ApplicationController
       format.json { render json: @addresses }
     end
   end
+  def customer_address
+    @address= Address.where(:customer_id => params[:id])
+  end
 
   # GET /addresses/new
   # GET /addresses/new.json

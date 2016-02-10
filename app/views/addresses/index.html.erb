@@ -3,7 +3,8 @@
 
  <table class="table table-striped">
   <tr>
-    <th>Customer</th>
+    <th>Customer First Name</th>
+    <th>Customer Last Name</th>
     <th>Street name</th>
     <th>Area name</th>
     <th>Landmark</th>
@@ -19,7 +20,8 @@
 
 <% @addresses.each do |address| %>
   <tr>
-    <td><%= address.customer.name %></td>
+    <td><%= address.customer.first_name %></td>
+     <td><%= address.customer.last_name %></td>
     <td><%= address.street_name %></td>
     <td><%= address.area_name %></td>
     <td><%= address.landmark %></td>

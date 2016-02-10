@@ -8,6 +8,7 @@ gem 'rails', '3.2.14'
 gem 'mysql2',   '~> 0.3.10'
 gem 'paperclip', '~> 4.2'
 gem 'auto_complete'
+gem 'has_permalink'
 
 
 # Gems used only for assets and not required

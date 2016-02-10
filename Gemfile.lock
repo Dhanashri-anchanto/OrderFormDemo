@@ -45,6 +45,7 @@ GEM
     coffee-script-source (1.10.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    has_permalink (0.1.7)
     hike (1.2.3)
     i18n (0.7.0)
     journey (1.0.4)
@@ -117,6 +118,7 @@ PLATFORMS
 DEPENDENCIES
   auto_complete
   coffee-rails (~> 3.2.1)
+  has_permalink
   jquery-rails
   mysql2 (~> 0.3.10)
   paperclip (~> 4.2)

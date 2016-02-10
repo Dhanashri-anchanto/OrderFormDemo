@@ -1,6 +1,4 @@
 
-<%= text_field_tag :search, params[:search] %>
-   <p> <button data-toggle="collapse" data-target="#option", class = "btn btn-xs btn-warning">Search</button></p>
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -13,38 +11,46 @@
       </ul>
     </div>
   <% end %>
-
-
- 
-  
-
-  
-  <div id="option" class="collapse">
-  <div class="row">
-   <div class="col-md-3">
-     <ul class="nav nav-pills nav-stacked">
-     <% @addresses.each do |add| %>
-       <li> <%= add.city %></li>
-       <% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Customer Details</div>
+    <div class="panel-body">
       
-     </ul>
-   </div>
-     <div class="clearfix visible-lg"></div>
- </div>
-</div>
-
-
-<div class="field">
-    <%= f.label :customer_id %><br />
-    <%#= f.number_field :customer_id %>
+      <div class="field">
+    <%= f.label :customer_Email_Id %>
         <%= f.text_field :customer_id, id: "input" %>
-         <%= f.text_field :customer_id, id: "name" %>
-         <%= f.text_field :customer_id, id: "email" %>
-         <%= f.text_field :customer_id, id: "mobile" %>
+        <%= f.label :customer_First_Name %>
+        <%= f.text_field :customer_id, id: "first_name" %>
+        <%= f.label :customer_last_name %>
+         <%= f.text_field :customer_id, id: "last_name" %>
+         <%= f.label :customer_mobile_no %>
+         <%= f.text_field :customer_id, id: "mobile" %>  
 
-         <%= f.text_field :customer_id, id: "add1" %>
 
   </div>
+    </div>
+    
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Address Details</div>
+    <div class="panel-body">
+    <div class="row">
+    <div class="col-md-6">
+       <%= f.text_area :customer_id, id: "add1", rows: 3, cols: 30 %>
+    </div>
+    <div class="col-md-6">
+      <%= f.text_area :customer_id, id: "add1", rows: 3, cols: 30 %>
+    </div>
+    </div>
+    </div>
+    
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Order Details</div>
+    <div class="panel-body">Panel Content</div>
+    
+  </div>
+
+
     
   <div class="field">
     <%= f.label :order_no %><br />
@@ -113,16 +119,17 @@ $("#input").keyup(function(){
  var  x = document.getElementById("input").value;
 $.ajax({
 type: 'GET',
-url:  "/customers/" + x,
-data: {id: x},
+url:  "/customers/customer_details/",
+data: { email: escape(x)},
 dataType: 'json',
 
 success: function(r){
 v = r['variant'];
 console.log(v)
-$("#name").val(r['name']);
+$("#first_name").val(r['first_name']);
+$("#last_name").val(r['last_name']);
 $("#mobile").val(r['mobile']);
-$("#email").val(r['email']);
+
 }
 });
 });
@@ -133,14 +140,32 @@ $("#input").keyup(function(){
  var  x = document.getElementById("input").value;
 $.ajax({
 type: 'GET',
-url:  "/addresses/" ,
-data: {customer_id: x},
+url:  "/customers/customer_address"  ,
+data: { email: escape(x)},
 dataType: 'json',
 
 success: function(r){
 v = r['variant'];
 console.log(v)
-$("#add1").val(r['street_name']);
+
+for ( var i = 0; i < r.length; i++ ) {
+ 
+    console.log(r[i]["street_no"])
+    console.log(r[i]["street_name"])
+    console.log(r[i]["area_name"])
+    console.log(r[i]["landmark"])
+    console.log(r[i]["city"])
+    console.log(r[i]["postal_code"])
+    console.log(r[i]["state"])
+    console.log(r[i]["country"])
+    console.log("=================")
+  //alert(r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"])
+   // $("#add1").val(r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]);
+
+}
+
+//alert(""+r[0]["area_name"])
+//$("#add1").val(r[0]['street_name']);
 
 }
 });
