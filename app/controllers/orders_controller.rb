@@ -25,8 +25,9 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    @customer = Customer.first
-    @addresses = @customer.addresses
+    #@line_items = @order.line_items.new
+    #@customer = Customer.first
+    #@addresses = @customer.addresses
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,8 +43,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    #raise params.inspect
     @order = Order.new(params[:order])
-
+    
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }

@@ -1,7 +1,9 @@
-<h1>Listing addresses</h1>
-
-
- <table class="table table-striped">
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+ <h1 style="color:white;">Listing addresses</h1>
+ <table class="table table-striped" id="t01">
   <tr>
     <th>Customer First Name</th>
     <th>Customer Last Name</th>
@@ -30,13 +32,22 @@
     <td><%= address.state %></td>
     <td><%= address.country %></td>
     <td><%= address.street_no %></td>
-    <td><%= link_to 'Show', address %></td>
-    <td><%= link_to 'Edit', edit_address_path(address) %></td>
-    <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to  address, :class => 'btn btn-xs btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+              <span class="glyphicon glyphicon-eye-open"></span> Show
+              <%end%></td>
+    <td><%= link_to edit_address_path(address) ,:class => 'btn btn-xs btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %></td>
+    <td><%= link_to  address, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :title => 'Delete', :rel => 'tooltip' do %>
+              <span class="glyphicon glyphicon-trash"></span> Remove  
+              <% end %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Address', new_address_path %>
+<%= link_to new_address_path , :class => 'btn btn-md btn-default',:title => 'Add New Address', :rel => 'tooltip' do %>
+    <span class="glyphicon glyphicon-pencil"></span> New Address 
+    <% end %>

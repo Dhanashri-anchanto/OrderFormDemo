@@ -1,6 +1,16 @@
-<h1>Editing order</h1>
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+<div class = "form_content">
+ <h1 style="color:white;">Editing order</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to  @order, :class => 'btn  btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+              <span class="glyphicon glyphicon-eye-open"></span> Show
+              <%end%>
+<%= link_to  orders_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+</div>

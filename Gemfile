@@ -9,6 +9,7 @@ gem 'mysql2',   '~> 0.3.10'
 gem 'paperclip', '~> 4.2'
 gem 'auto_complete'
 gem 'has_permalink'
+gem 'awesome_print', '~> 1.6', '>= 1.6.1'
 
 
 # Gems used only for assets and not required

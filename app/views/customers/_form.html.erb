@@ -16,27 +16,27 @@
     <div class="panel-body">
 <div class="row">
   <div class="col-sm-3">
-    <%= f.label :first_name %>
+    <%= f.label :first_name, :required => true %>
   </div>
   <div class="col-sm-6">
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name , :required => true%>
   </div>
 </div>
 <div class="row">
   <div class="col-sm-3">
-    <%= f.label :last_name %>
+    <%= f.label :last_name, :required => true %>
   </div>
   <div class="col-sm-6">
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, :required => true %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-3">
-    <%= f.label :mobile %>
+    <%= f.label :mobile, :required => true %>
   </div>
   <div class="col-sm-6">
-    <%= f.text_field :mobile %>
+    <%= f.text_field :mobile, :required => true %>
   </div>
 </div>
 <div class="row">
@@ -44,11 +44,12 @@
     <%= f.label :email %>
   </div>
 <div class="col-sm-6">
-  <%= f.text_field :email %>
+  <%= f.text_field :email, :required => true %>
 </div>
 </div>
-</div>
-  </div>
+<br/>
+<br/>
+
 <div class="panel panel-default">
     <div class="panel-heading">Customer Addresses</div>
     <div class="panel-body">
@@ -59,15 +60,11 @@
 </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Orders Details</div>
-    <div class="panel-body">
-<%= f.fields_for :orders do |builder| %>
-<%=  render 'order', :f => builder %>
-<% end %>
-</div>
-</div>
 <div class="actions">
-  <%= f.submit %>
+ <%= button_tag( :class => 'btn btn-primary', :title => 'Save', :rel => 'tooltip') do %>
+       Save<span class="glyphicon glyphicon-floppy-save"></span> 
+   <% end %>
 </div>
+</div>
+  </div>
 <% end %>

@@ -1,10 +1,16 @@
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Customer:</b>
-  <%= @address.customer_id %>
-</p>
-
+<div class="row">
+  <div class="col-sm-4">
+<div class="panel panel-info">
+ <div class="panel-heading"><h3> <%= @address.customer.first_name %> <%= @address.customer.last_name %></div>
+  <div class="panel-body">
+    
+   
 <p>
   <b>Street name:</b>
   <%= @address.street_name %>
@@ -46,5 +52,16 @@
 </p>
 
 
-<%= link_to 'Edit', edit_address_path(@address) %> |
-<%= link_to 'Back', addresses_path %>
+<%= link_to  edit_address_path(@address),:class => 'btn btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %>
+<%= link_to addresses_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+
+  </div>
+</div>
+</div>
+</div>
+

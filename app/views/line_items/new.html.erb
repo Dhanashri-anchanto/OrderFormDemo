@@ -1,5 +1,13 @@
-<h1>New line_item</h1>
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+<div class = "form_content">
+ <h1 style="color:white;">New line_item</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', line_items_path %>
+<%= link_to line_items_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+</div>

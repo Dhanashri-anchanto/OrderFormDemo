@@ -1,6 +1,17 @@
-<h1>Listing products</h1>
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+ <h1 style="color:white;">Listing products</h1>
 
-<table class="table table-striped table-hovered">
+
+
+<%= link_to new_product_path , :class => 'btn btn-md btn-default',:title => 'Add New Product', :rel => 'tooltip' do %>
+    <span class="glyphicon glyphicon-pencil"></span> New Product 
+    <% end %>
+    <br/>
+    <br/>
+<table class="table table-striped table-hovered" id="t01">
   <tr>
     <th>Name</th>
     <th>Sku</th>
@@ -39,13 +50,19 @@
     <td><%= product.is_sample %></td>
     <td><%= product.company %></td>
     <td><%= product.merchant %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to  product,:class => 'btn btn-xs btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+              <span class="glyphicon glyphicon-eye-open"></span> Show
+              <%end%></td>
+    <td><%= link_to  edit_product_path(product),:class => 'btn btn-xs btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %></td>
+    <td><%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-xs btn-danger', :title => 'Delete', :rel => 'tooltip' do %>
+              <span class="glyphicon glyphicon-trash"></span> Remove  
+              <% end %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Product', new_product_path %>

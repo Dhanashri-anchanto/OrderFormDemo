@@ -6,7 +6,7 @@
  <%= f.label :order_no %>
   </div>
   <div class="col-sm-6">
-   <%= f.text_field :order_no %>
+   <%= f.text_field :order_no , :required => true%>
 </div>
 </div>
 
@@ -15,7 +15,7 @@
  <%= f.label :tracking_no %>
  </div>
   <div class="col-sm-6">
-   <%= f.text_field :tracking_no %>
+   <%= f.text_field :tracking_no , :required => true%>
   </div>
 </div>
 
@@ -24,7 +24,7 @@
   <%= f.label :delivery_date %>
   </div>
   <div class="col-sm-6">
-  <%= f.date_select :delivery_date %>
+  <%= f.date_select :delivery_date, :required => true %>
  </div>
 </div>
 
@@ -54,7 +54,7 @@
   <%= f.label :delivery_slot %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :delivery_slot %>
+  <%= f.text_field :delivery_slot, :required => true %>
   </div>
 </div>
 
@@ -63,7 +63,7 @@
   <%= f.label :carrier %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :carrier %>
+  <%= f.text_field :carrier, :required => true %>
  </div>
 </div>
 
@@ -72,7 +72,7 @@
   <%= f.label :order_currency %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :order_currency %>
+  <%= f.text_field :order_currency , :required => true%>
 </div>
 </div>
 
@@ -82,7 +82,7 @@
   <%= f.label :order_value %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :order_value %>
+  <%= f.text_field :order_value, :required => true %>
 </div>
 </div>
 
@@ -91,7 +91,7 @@
   <%= f.label :payment_collection %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :payment_collection %>
+  <%= f.text_field :payment_collection , :required => true%>
 </div>
 </div>
 
@@ -100,6 +100,6 @@
   <%= f.label :special_instruction %>
   </div>
   <div class="col-sm-6">
-  <%= f.text_field :special_instruction %>
+  <%= f.text_field :special_instruction, :required => true %>
 </div>
 </div>

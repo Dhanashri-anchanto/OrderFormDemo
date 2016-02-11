@@ -1,58 +1,66 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Line Items Details</div>
-    <div class="panel-body">
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :sku %>
-  </div>
-  <div class="col-sm-6">
-  <%= f.text_field :sku, id: 'sku1', class: 'sku' %>
-</div>
-</div>
+      <div class="panel-heading">Line Item Details</div>
+            <div class="panel-body">
+                  <div class="row">
+                      <div class="col-md-6 ">
+                          <%= f.label "Enter SKU" %>
+                      </div>
+                      <div class="col-md-6 col-md-pull-2">
+                          <%= f.text_field :sku,  class: "sku", :required => true %>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 ">
+                          <%= f.label "Product Name" %>
+                      </div>
+                      <div class="col-md-6 col-md-pull-2">
+                          <%= f.text_field :product_name, class: "pname", :required => true,:readonly => true%>
+                           <%= f.hidden_field :product_id, class: "pid"%>
+                      </div>
+                  </div>
 
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :description %>
- </div>
-  <div class="col-sm-6">
-  <%= f.text_field :description, class: "desc" %>
-  </div>
-</div>
+                  <div class="row">
+                      <div class="col-md-6 ">
+                          <%= f.label "Description" %>
+                      </div>
+                      <div class="col-md-6 col-md-pull-2">
+                          <%= f.text_field :description, class: "desc", :required => true %>
+                      </div>
+                  </div>
 
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :qty %>
-  </div>
-  <div class="col-sm-6">
-  <%= f.text_field :qty , class: "qty"%>
- </div>
-</div>
+                  <div class="row">
+                      <div class="col-md-6 ">
+                            <%= f.label "Quantity" %>
+                      </div>
+                      <div class="col-md-6 col-md-pull-2">
+                          <%= f.text_field :qty , class: "qty", :required => true%>
+                      </div>
+                  </div>
 
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :price %>
-  </div>
-  <div class="col-sm-6">
-  <%= f.text_field :price, class: "price" %>
- </div>
-</div>
-<%= f.text_field :product_name, class: "pname"%>
+                  <div class="row">
+                        <div class="col-md-6 ">
+                            <%= f.label "Price" %>
+                          </div>
+                          <div class="col-md-6 col-md-pull-2">
+                              <%= f.text_field :price, class: "price" , :required => true,:readonly => true%>
+                          </div>
+                  </div>
 
-</div>
-</div>
+            </div>
+  </div>
+
 
 <script>
 
-alert(document.body.lastChild.nodeType)
-
-
 $(".sku").keyup(function(){
- var  x;  //= null;
- x = document.getElementsByClassName("sku")[0].value;
+var  x= $(this).val()
 
- //var myText = document.getElementsByClassName("sku")[0].firstChild.nodeValue;
- console.log(x)
- //console.log(myText)
+//var y =  $(this).parent().value;
+// console.log(y)
+
+//var myText = document.getElementsByClassName("sku")[0].firstChild.nodeValue;
+console.log(x)
+//console.log(myText)
 $.ajax({
 type: 'GET',
 url:  "/products/product_details",
@@ -62,20 +70,51 @@ dataType: 'json',
 success: function(r){
 v = r['variant'];
 console.log(v)
-$(".qty").val(1);
-$(".price").val(r['cost_price']);
-$(".pname").val(r['name']);
+$(".qty:last").val(1);
+$(".price:last").val(r['cost_price']);
+$(".pname:last").val(r['name']);
+$(".pid:last").val(r['id']);
 //x = null;
+$(".qty").keyup(function(){
+var  x = document.getElementsByClassName("qty")[0].value;
+if (x > r['avail_min_qty']) {
+   alert("You have entered wrong Quantity for this product")
+}
+var  y = r['cost_price']
+console.log(x)
+console.log(y)
+$(".price:last").val(x * y);
+
+});
 }
 });
 });
 
-$(".qty").keyup(function(){
- var  x = document.getElementsByClassName("qty")[0].value;
- var  y = document.getElementsByClassName("price")[0].value;
- console.log(x)
- console.log(y)
- $(".price").val(x * y);
+// $(".qty").keyup(function(){
+// var  x = document.getElementsByClassName("qty")[0].value;
+// var  y = document.getElementsByClassName("price")[0].value;
+// console.log(x)
+// console.log(y)
+// $(".price").val(x * y);
+
+// });
+</script>
+
+<script>
+var counter=0;
+$(document).ready(function(){
+//alert("Page is loaded");  
+var newDivThingy = document.getElementsByClassName("sku")[0];
+var a = parseInt(newDivThingy.id)
+console.log(a)
+a+=1;
+newDivThingy.id  = a;
+//alert( newDivThingy.id)
+// continue your stuff here     
 
 });
+
+
+
+
 </script>

@@ -13,29 +13,31 @@
 
   <div class="field">
     <%= f.label :sku %><br />
-    <%= f.text_field :sku %>
+    <%= f.text_field :sku , :required => true%>
   </div>
   <div class="field">
     <%= f.label :product_id %><br />
-    <%= f.number_field :product_id %>
+    <%= f.number_field :product_id , :required => true%>
   </div>
   <div class="field">
     <%= f.label :order_id %><br />
-    <%= f.number_field :order_id %>
+    <%= f.number_field :order_id, :required => true %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_field :description, :required => true %>
   </div>
   <div class="field">
     <%= f.label :qty %><br />
-    <%= f.number_field :qty %>
+    <%= f.number_field :qty , :required => true%>
   </div>
   <div class="field">
     <%= f.label :price %><br />
-    <%= f.text_field :price %>
+    <%= f.text_field :price, :required => true %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+   <%= button_tag( :class => 'btn btn-primary', :title => 'Save', :rel => 'tooltip') do %>
+       Save<span class="glyphicon glyphicon-floppy-save"></span> 
+   <% end %>
   </div>
 <% end %>

@@ -1,5 +1,11 @@
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
 <p id="notice"><%= notice %></p>
-<p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
 <b>Product Image </b>
 <%= image_tag @product.image.url(:medium) %>
 <p>
@@ -78,5 +84,13 @@
 </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to  edit_product_path(@product) ,:class => 'btn btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %>
+<%= link_to  products_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+
+  </div>
+</div>

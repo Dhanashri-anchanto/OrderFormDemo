@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160210042833) do
+ActiveRecord::Schema.define(:version => 20160211132232) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "customer_id"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20160210042833) do
 
   create_table "line_items", :force => true do |t|
     t.string   "sku"
-    t.integer  "product_id"
     t.integer  "order_id"
     t.string   "description"
     t.integer  "qty"
@@ -51,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20160210042833) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "product_name"
+    t.integer  "product_id"
   end
 
   add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(:version => 20160210042833) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "mobile"
+    t.string   "shipping_address"
   end
 
   add_index "orders", ["address_id"], :name => "index_orders_on_address_id"

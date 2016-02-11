@@ -4,9 +4,9 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h1>Listing customers</h1>
+    <h1 style="color:white;">Listing customers</h1>
     <br />
-    <%= link_to new_customer_path, :class => 'btn btn-md btn-info',:title => 'Add New Customer', :rel => 'tooltip' do %>
+    <%= link_to new_customer_path, :class => 'btn btn-md btn-default',:title => 'Add New Customer', :rel => 'tooltip' do %>
     <span class="glyphicon glyphicon-user"></span> New Customer 
     <% end %>
     <br /><br />
@@ -27,9 +27,16 @@
         <td><%= customer.last_name %></td>
         <td><%= customer.mobile %></td>
         <td><%= customer.email %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td><%= link_to customer_path(customer), :class => 'btn btn-xs btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+              <span class="glyphicon glyphicon-eye-open"></span> Show
+              <%end%></td>
+        <td><%= link_to edit_customer_path(customer),:class => 'btn btn-xs btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %></td>
+        <td><%= link_to customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-xs btn-danger', :title => 'Delete', :rel => 'tooltip' do %>
+              <span class="glyphicon glyphicon-trash"></span> Remove  
+              <% end %></td>
       </tr>
       <% end %>
     </table>

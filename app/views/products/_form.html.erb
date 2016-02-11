@@ -13,55 +13,55 @@
 
 <div class="field">
 <%= f.label :iamge %>
-<%= f.file_field :image %>
+<%= f.file_field :image, :required => true %>
 </div>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :required => true %>
   </div>
   <div class="field">
     <%= f.label :sku %><br />
-    <%= f.text_field :sku %>
+    <%= f.text_field :sku, :required => true %>
   </div>
   <div class="field">
     <%= f.label :MFUPC %><br />
-    <%= f.text_field :MFUPC %>
+    <%= f.text_field :MFUPC , :required => true%>
   </div>
   <div class="field">
     <%= f.label :cost_price %><br />
-    <%= f.text_field :cost_price %>
+    <%= f.text_field :cost_price, :required => true %>
   </div>
   <div class="field">
     <%= f.label :retail_price %><br />
-    <%= f.text_field :retail_price %>
+    <%= f.text_field :retail_price , :required => true%>
   </div>
   <div class="field">
     <%= f.label :storage_type %><br />
-    <%= f.text_field :storage_type %>
+    <%= f.text_field :storage_type, :required => true %>
   </div>
   <div class="field">
     <%= f.label :avail_min_qty %><br />
-    <%= f.number_field :avail_min_qty %>
+    <%= f.number_field :avail_min_qty , :required => true%>
   </div>
   <div class="field">
     <%= f.label :weight %><br />
-    <%= f.text_field :weight %>
+    <%= f.text_field :weight, :required => true %>
   </div>
   <div class="field">
     <%= f.label :height %><br />
-    <%= f.text_field :height %>
+    <%= f.text_field :height , :required => true%>
   </div>
   <div class="field">
     <%= f.label :width %><br />
-    <%= f.text_field :width %>
+    <%= f.text_field :width, :required => true %>
   </div>
   <div class="field">
     <%= f.label :depth %><br />
-    <%= f.text_field :depth %>
+    <%= f.text_field :depth, :required => true %>
   </div>
   <div class="field">
     <%= f.label :buffer_stock %><br />
-    <%= f.number_field :buffer_stock %>
+    <%= f.number_field :buffer_stock , :required => true%>
   </div>
   <div class="field">
     <%= f.label :is_sample %><br />
@@ -69,13 +69,15 @@
   </div>
   <div class="field">
     <%= f.label :company %><br />
-    <%= f.text_field :company %>
+    <%= f.text_field :company, :required => true %>
   </div>
   <div class="field">
     <%= f.label :merchant %><br />
-    <%= f.text_field :merchant %>
+    <%= f.text_field :merchant, :required => true %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag( :class => 'btn btn-primary', :title => 'Save', :rel => 'tooltip') do %>
+       Save<span class="glyphicon glyphicon-floppy-save"></span> 
+   <% end %>
   </div>
 <% end %>

@@ -1,5 +1,15 @@
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
 <p id="notice"><%= notice %></p>
 
+<div class="panel panel-default">
+
+  <div class="col-sm-4">
+<div class="panel panel-info">
+ <div class="panel-heading"><h3>Line Item Details</h3></div>
+    
 <p>
   <b>Sku:</b>
   <%= @line_item.sku %>
@@ -31,5 +41,14 @@
 </p>
 
 
-<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
-<%= link_to 'Back', line_items_path %>
+<%= link_to  edit_line_item_path(@line_item) ,:class => 'btn btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %>
+<%= link_to  line_items_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+
+  </div>
+</div>
+</div>

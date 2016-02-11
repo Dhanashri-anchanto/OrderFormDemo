@@ -1,5 +1,12 @@
-<h1>New customer</h1>
-
+<div class="row">
+  <br/><br/>
+  <br/>
+</div>
+<div class = "form_content">
+<h1 style="color:white;">New customer</h1>
+<%= link_to  customers_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
 <%= render 'form' %>
+</div>
 
-<%= link_to 'Back', customers_path %>

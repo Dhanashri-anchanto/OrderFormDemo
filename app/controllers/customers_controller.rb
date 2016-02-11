@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
 # GET /customers
 # GET /customers.json
 def index
-  @customers = Customer.search(params[:search])
+  @customers = Customer.all
 
   respond_to do |format|
 format.html # index.html.erb
@@ -17,7 +17,8 @@ def show
   if request.xhr?
     @customer = Customer.find_by_email(params[:email])
   else
-    @customer = Customer.find_by_permalink(params[:id])  #Customer.includes(:addresses).find(params[:id])
+    @customer = Customer.find(params[:id])  #Customer.includes(:addresses).find(params[:id])
+    @addresses = @customer.addresses
   end
 respond_to do |format|
 format.html # show.html.erb
@@ -30,7 +31,7 @@ end
 def new
   @customer = Customer.new
   @address = @customer.addresses.new
-  @order = @customer.orders.new
+ # @order = @customer.orders.new
 
   respond_to do |format|
 format.html # new.html.erb
@@ -39,12 +40,17 @@ end
 end
 
 def customer_details
+  if @customer.email.exists?
+swal('Customer is already present', 'success');
+
+  else
 
   @customer = Customer.find_by_email(params[:email])
 
   respond_to do |format|
 format.html # show.html.erb
 format.json { render json: @customer }
+end
 end
 end
 
@@ -61,13 +67,14 @@ end
 end
 # GET /customers/1/edit
 def edit
-  @customer = Customer.find_by_permalink(params[:id])
+  @customer = Customer.find(params[:id])
 
 end
 
 # POST /customers
 # POST /customers.json
 def create
+  #raise params.inspect
   @customer = Customer.new(params[:customer])
 #@customer.addresses.build
 # @customer.order.build
@@ -86,7 +93,7 @@ end
 # PUT /customers/1
 # PUT /customers/1.json
 def update
-  @customer = Customer.find_by_permalink(params[:id])
+  @customer = Customer.find(params[:id])
 
   respond_to do |format|
     if @customer.update_attributes(params[:customer])
@@ -102,7 +109,7 @@ end
 # DELETE /customers/1
 # DELETE /customers/1.json
 def destroy
-  @customer = Customer.find_by_permalink(params[:id])
+  @customer = Customer.find(params[:id])
   @customer.destroy
 
   respond_to do |format|

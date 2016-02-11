@@ -11,6 +11,24 @@
  *= require_self
  *= require_tree .
  */
+ 
+.container-fluid{
+  
+  background: url("http://il7.picdn.net/shutterstock/videos/3011377/thumb/10.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+.form_content{
+  width: 700px;
+  height: auto;
+  padding: 50px;
+  
+  box-shadow: 10px 10px 10px  10px grey;
+}
+
 #nav {
   line-height:30px;
   
@@ -94,3 +112,6 @@ table#t01 th {
   border-collapse: collapse;
   
 } 
+h1{
+  color: white;
+}
