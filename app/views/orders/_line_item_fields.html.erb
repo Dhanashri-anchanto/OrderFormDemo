@@ -1,12 +1,13 @@
 <div class="panel panel-default">
-      <div class="panel-heading">Line Item Details</div>
+      <div class="panel-heading">Line Item Details
+      <div align="right"><%= link_to_remove_fields "remove", f %></div></div>
             <div class="panel-body">
                   <div class="row">
                       <div class="col-md-6 ">
                           <%= f.label "Enter SKU" %>
                       </div>
                       <div class="col-md-6 col-md-pull-2">
-                          <%= f.text_field :sku,  class: "sku", :required => true %>
+                          <%= f.text_field :sku, id: 0,  class: "sku", :required => true %>
                       </div>
                   </div>
                   <div class="row">
@@ -42,11 +43,13 @@
                             <%= f.label "Price" %>
                           </div>
                           <div class="col-md-6 col-md-pull-2">
-                              <%= f.text_field :price, class: "price" , :required => true,:readonly => true%>
+                              <%= f.text_field :price, class: "price" , :required => true, :readonly => true%>
+                              <%#= f.text_field :price, value: 0, class: "total"%>
                           </div>
                   </div>
 
             </div>
+
   </div>
 
 
@@ -54,13 +57,7 @@
 
 $(".sku").keyup(function(){
 var  x= $(this).val()
-
-//var y =  $(this).parent().value;
-// console.log(y)
-
-//var myText = document.getElementsByClassName("sku")[0].firstChild.nodeValue;
 console.log(x)
-//console.log(myText)
 $.ajax({
 type: 'GET',
 url:  "/products/product_details",
@@ -71,50 +68,43 @@ success: function(r){
 v = r['variant'];
 console.log(v)
 $(".qty:last").val(1);
-$(".price:last").val(r['cost_price']);
+$(".price:last").val(r['retail_price']);
 $(".pname:last").val(r['name']);
 $(".pid:last").val(r['id']);
-//x = null;
-$(".qty").keyup(function(){
-var  x = document.getElementsByClassName("qty")[0].value;
-if (x > r['avail_min_qty']) {
-   alert("You have entered wrong Quantity for this product")
-}
-var  y = r['cost_price']
-console.log(x)
-console.log(y)
-$(".price:last").val(x * y);
 
-});
-}
-});
-});
 
-// $(".qty").keyup(function(){
+// $(".qty:last").keyup(function(){
 // var  x = document.getElementsByClassName("qty")[0].value;
-// var  y = document.getElementsByClassName("price")[0].value;
-// console.log(x)
-// console.log(y)
-// $(".price").val(x * y);
+// if (x > r['avail_min_qty']) {
+//    alert("You have entered wrong Quantity for this product")
+// }
+// var  y = r['cost_price']
+// console.log(y);
+// $(".price:last").val(x * y);
+
+
+// //var a = 
 
 // });
-</script>
-
-<script>
-var counter=0;
-$(document).ready(function(){
-//alert("Page is loaded");  
-var newDivThingy = document.getElementsByClassName("sku")[0];
-var a = parseInt(newDivThingy.id)
-console.log(a)
-a+=1;
-newDivThingy.id  = a;
-//alert( newDivThingy.id)
-// continue your stuff here     
-
+}
+});
 });
 
+</script>
 
 
-
+<script>
+// var counter=0;
+// $(document).ready(function(){
+// //alert("Page is loaded");  
+// var newDivThingy = document.getElementsByClassName("sku")[0];
+// var a = parseInt(newDivThingy.id)
+// console.log(a)
+// a+=1;
+// newDivThingy.id  = a;
+// console.log("#########")
+// console.log(document.getElementById(newDivThingy.id)
+// //alert( newDivThingy.id)
+// // continue your stuff here     
+// });
 </script>

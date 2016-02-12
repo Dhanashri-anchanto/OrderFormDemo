@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.paginate(page: params[:page], per_page: 5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @li = @order.line_items
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    #@line_items = @order.line_items.new
     #@line_items = @order.line_items.new
     #@customer = Customer.first
     #@addresses = @customer.addresses

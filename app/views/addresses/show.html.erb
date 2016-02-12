@@ -7,7 +7,17 @@
 <div class="row">
   <div class="col-sm-4">
 <div class="panel panel-info">
- <div class="panel-heading"><h3> <%= @address.customer.first_name %> <%= @address.customer.last_name %></div>
+ <div class="panel-heading"><h3> <%= @address.customer.first_name %> <%= @address.customer.last_name %></h3>
+ <div align="right">
+ <%= link_to  edit_address_path(@address),:class => 'btn btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+
+              <span class="glyphicon glyphicon-edit"></span> Edit  
+              <% end %>
+<%= link_to addresses_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+<span class="glyphicon glyphicon-step-backward"></span> Back
+<% end %>
+</div>
+ </div>
   <div class="panel-body">
     
    
@@ -50,15 +60,6 @@
   <b>Street no:</b>
   <%= @address.street_no %>
 </p>
-
-
-<%= link_to  edit_address_path(@address),:class => 'btn btn-info',:title => 'Edit', :rel => 'tooltip' do %>
-
-              <span class="glyphicon glyphicon-edit"></span> Edit  
-              <% end %>
-<%= link_to addresses_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
-<span class="glyphicon glyphicon-step-backward"></span> Back
-<% end %>
 
   </div>
 </div>

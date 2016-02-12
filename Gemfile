@@ -10,6 +10,8 @@ gem 'paperclip', '~> 4.2'
 gem 'auto_complete'
 gem 'has_permalink'
 gem 'awesome_print', '~> 1.6', '>= 1.6.1'
+gem 'will_paginate-bootstrap'
+
 
 
 # Gems used only for assets and not required

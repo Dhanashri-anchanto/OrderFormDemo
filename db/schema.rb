@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160211132232) do
+ActiveRecord::Schema.define(:version => 20160212091141) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "customer_id"
@@ -35,11 +35,8 @@ ActiveRecord::Schema.define(:version => 20160211132232) do
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "permalink"
     t.string   "last_name"
   end
-
-  add_index "customers", ["permalink"], :name => "index_customers_on_permalink"
 
   create_table "line_items", :force => true do |t|
     t.string   "sku"

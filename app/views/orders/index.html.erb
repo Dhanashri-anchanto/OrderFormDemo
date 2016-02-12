@@ -52,5 +52,6 @@
               <% end %></td>
   </tr>
 <% end %>
+ <td colspan="4"><%= will_paginate @orders, renderer: BootstrapPagination::Rails , previous_label: "Older", next_label: "Newer", inner_window: 1 %></td>
 </table>
 

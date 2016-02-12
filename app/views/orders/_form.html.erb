@@ -21,6 +21,7 @@
                 </div>
                 <div class="col-md-6 col-md-pull-2">
                    <%= f.text_field :email, id: "input", :required => true %><br/>
+                   <%=f.hidden_field :customer_id, id: "cid"%>
                 </div>
             </div>
 
@@ -63,6 +64,7 @@
                      </div>
                      <div class="col-md-6 col-md-pull-2" id="mylist">
                           <%= f.text_area :shipping_address, id: "add1", rows: 3, cols: 30, :required => true %>
+                          
                      </div>
                 </div>
      
@@ -200,80 +202,70 @@
 
 
 
-<script>
+ <script>
   $("#input").keyup(function(){
-    var  x = document.getElementById("input").value;
-    $.ajax({
-      type: 'GET',
-      url:  "/customers/customer_details/",
-      data: { email: escape(x)},
-      dataType: 'json',
+      var  x = document.getElementById("input").value;
+          $.ajax({
+                    type: 'GET',
+                    url:  "/customers/customer_details/",
+                    data: { email: escape(x)},
+                    dataType: 'json',
 
-      success: function(r){
-        v = r['variant'];
-        console.log(v)
-        $("#first_name").val(r['first_name']);
-        $("#last_name").val(r['last_name']);
-        $("#mobile").val(r['mobile']);
-
-      }
-    });
+                    success: function(r){
+                     v = r['variant'];
+                     console.log(v)
+                     $("#first_name").val(r['first_name']);
+                     $("#last_name").val(r['last_name']);
+                     $("#mobile").val(r['mobile']);
+                     $("#cid").val(r['id']);
+                      }
+                });
   });
 
 
 
   $("#input").keyup(function(){
-    var  x = document.getElementById("input").value;
-    $.ajax({
-      type: 'GET',
-      url:  "/customers/customer_address"  ,
-      data: { email: escape(x)},
-      dataType: 'json',
+                var  x = document.getElementById("input").value;
+                $.ajax({
+                           type: 'GET',
+                          url:  "/customers/customer_address"  ,
+                          data: { email: escape(x)},
+                          dataType: 'json',
 
-      success: function(r){
-        v = r['variant'];
-        console.log(v)
+                          success: function(r){
+                           v = r['variant'];
+                           console.log(v)
+                          $("#add1").val("");
+                          for ( var i = 0; i < r.length; i++ ) {
+                                    var para = document.createElement("label");
+                                    var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
+                                    var t = document.createTextNode(a);
+                                    para.appendChild(t);
+                                    para.id = "para_"+i ;
+                                    document.getElementById("mylist").appendChild(para);
+                                    //alert(para.id);
+                                    var btn = document.createElement("BUTTON");
+                                    var t = document.createTextNode("Add Address");
+                                        btn.setAttribute("type","button");
+                                    btn.appendChild(t);
+                                    btn.id = "btn_"+i;
+                                    document.getElementById("mylist").appendChild(btn);
+                                    //alert(btn.id);
+                                  }
 
-        for ( var i = 0; i < r.length; i++ ) {
+                          $("button").click(function(){
+                                    var id = this.id
+                                    var lastChar = id.substr(id.length - 1); // => "1"  
+                                    var add = document.getElementById("para_" + lastChar).childNodes[0].nodeValue;  
+                                    $("#add1").val("");
+                                    $("#add1").val(add);
+                                  });
+                          }
+                      });
+      });
 
-          console.log(r[i]["street_no"])
-          console.log(r[i]["street_name"])
-          console.log(r[i]["area_name"])
-          console.log(r[i]["landmark"])
-          console.log(r[i]["city"])
-          console.log(r[i]["postal_code"])
-          console.log(r[i]["state"])
-          console.log(r[i]["country"])
-          console.log("=================")
-//alert(r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"])
-// $("#add1").val(r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]);
-// var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
-//=============================
-// // console.log(a)
-var para = document.createElement("div");
-var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
-var t = document.createTextNode(a);
-para.appendChild(t);
-para.id = "para_"+i ;
-
-document.getElementById("mylist").appendChild(para);
-//alert(para.id);
-
-
-var btn = document.createElement("BUTTON");
-    var t = document.createTextNode("Add Address");
-    btn.appendChild(t);
-    //btn.id = "btn_"+i;
-    document.getElementById("mylist").appendChild(btn);
-    //alert(btn.id);
-
-}
-//=============================
-//alert(""+r[0]["area_name"])
-//$("#add1").val(r[0]['street_name']);
-
-}
-});
+$(document).ready(function(){
+ $("#add1").val("");
 });
 </script>
 

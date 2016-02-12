@@ -3,6 +3,10 @@
   <br/>
 </div>
  <h1 style="color:white;">Listing addresses</h1>
+ <%= link_to new_address_path , :class => 'btn btn-md btn-default',:title => 'Add New Address', :rel => 'tooltip' do %>
+    <span class="glyphicon glyphicon-pencil"></span> New Address 
+    <% end %>
+    <br/><br/>
  <table class="table table-striped" id="t01">
   <tr>
     <th>Customer First Name</th>
@@ -46,8 +50,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to new_address_path , :class => 'btn btn-md btn-default',:title => 'Add New Address', :rel => 'tooltip' do %>
-    <span class="glyphicon glyphicon-pencil"></span> New Address 
-    <% end %>

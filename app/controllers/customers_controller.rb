@@ -39,20 +39,14 @@ format.json { render json: @customer }
 end
 end
 
-def customer_details
-  if @customer.email.exists?
-swal('Customer is already present', 'success');
-
-  else
-
+def customer_details  
   @customer = Customer.find_by_email(params[:email])
-
   respond_to do |format|
 format.html # show.html.erb
 format.json { render json: @customer }
 end
 end
-end
+
 
 def customer_address
 
@@ -75,20 +69,29 @@ end
 # POST /customers.json
 def create
   #raise params.inspect
+  
   @customer = Customer.new(params[:customer])
-#@customer.addresses.build
+  #@customer.addresses.build
 # @customer.order.build
-
-respond_to do |format|
-  if @customer.save
-    format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-    format.json { render json: @customer, status: :created, location: @customer }
-  else
-    format.html { render action: "new" }
-    format.json { render json: @customer.errors, status: :unprocessable_entity }
+if Customer.where(email: @customer.email).empty?
+  respond_to do |format|
+    if @customer.save
+        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.json { render json: @customer, status: :created, location: @customer }
+    else
+        format.html { render action: "new" }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+    end
   end
+else
+  flash[:notice] = 'Customer already Exists'
+  render action: "new" , flash: {notice: "Customer already Exists"}
+
+ 
+
 end
 end
+# end
 
 # PUT /customers/1
 # PUT /customers/1.json

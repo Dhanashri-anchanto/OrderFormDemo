@@ -1,16 +1,17 @@
 <div class="row">
-  <br/><br/>
-  <br/>
+	<br/><br/>
+	<br/>
 </div>
 <div class = "form_content">
- <h1 style="color:white;">Editing product</h1>
+	<h1 style="color:white;">Editing product</h1>
+	<%= link_to  @product, :class => 'btn btn-warning',:title => 'Show', :rel => 'tooltip' do%>
+	<span class="glyphicon glyphicon-eye-open"></span> Show
+	<%end%>
+	<%= link_to products_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+	<span class="glyphicon glyphicon-step-backward"></span> Back
+	<% end %>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to  @product, :class => 'btn btn-warning',:title => 'Show', :rel => 'tooltip' do%>
-              <span class="glyphicon glyphicon-eye-open"></span> Show
-              <%end%>
-<%= link_to products_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
-<span class="glyphicon glyphicon-step-backward"></span> Back
-<% end %>
+
 </div>
