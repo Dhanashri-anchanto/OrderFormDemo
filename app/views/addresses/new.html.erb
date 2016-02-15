@@ -5,9 +5,10 @@
 <div class = "form_content">
  <h1 style="color:white;">New address</h1>
 
+	<%= link_to  addresses_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+	<span class="glyphicon glyphicon-step-backward"></span> Back
+	<% end %>
+	<br/><br/>
 <%= render 'form' %>
 
-<%= link_to  addresses_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
-<span class="glyphicon glyphicon-step-backward"></span> Back
-<% end %>
 </div>

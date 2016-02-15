@@ -47,8 +47,13 @@ class OrdersController < ApplicationController
   def create
     #raise params.inspect
     @order = Order.new(params[:order])
+
+    # if Customer.where(email: @customer.email).empty?
+    #       @order.customer.build
+    #        @order.address.build    
     
-    respond_to do |format|
+    # else
+      respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
@@ -57,6 +62,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  #end
   end
 
   # PUT /orders/1

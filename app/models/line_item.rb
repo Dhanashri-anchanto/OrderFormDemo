@@ -3,4 +3,5 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
   validates :description, :price,  :qty, :sku, :product_name, presence: true
+  validates :sku, :qty , numericality: true 
 end

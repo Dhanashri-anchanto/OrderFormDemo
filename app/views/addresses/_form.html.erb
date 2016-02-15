@@ -12,8 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
+    <%= f.label :customer_email %><br />
+    <%= f.hidden_field :customer_id, id: 'cid'%>
+    <%= f.collection_select(:customer_id, Customer.all, :id, :email, id: 'select') %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street_no %><br />
+    <%= f.number_field :street_no, :required => true, min: 0 %>
   </div>
   <div class="field">
     <%= f.label :street_name %><br />
@@ -43,11 +49,31 @@
     <%= f.label :country %><br />
     <%= f.text_field :country , :required => true%>
   </div>
-  <div class="field">
-    <%= f.label :street_no %><br />
-    <%= f.number_field :street_no, :required => true %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script>
+  $('select').change(function () {
+     var optionSelected = $(this).find("option:selected");
+     //var valueSelected  = optionSelected.val();
+     var textSelected   = optionSelected.text();
+     console.log(textSelected)
+     $.ajax({
+                    type: 'GET',
+                    url:  "/customers/customer_details/",
+                    data: { email: escape(textSelected)},
+                    dataType: 'json',
+
+                    success: function(r){
+                     v = r['variant'];
+                     console.log(v)
+                     
+                     $("#cid").val(r['id']);
+                      }
+                });
+ });
+</script>

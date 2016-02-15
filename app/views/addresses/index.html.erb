@@ -11,6 +11,7 @@
   <tr>
     <th>Customer First Name</th>
     <th>Customer Last Name</th>
+    <th>Street no</th>
     <th>Street name</th>
     <th>Area name</th>
     <th>Landmark</th>
@@ -18,7 +19,7 @@
     <th>Postal code</th>
     <th>State</th>
     <th>Country</th>
-    <th>Street no</th>
+    
     <th></th>
     <th></th>
     <th></th>
@@ -28,6 +29,7 @@
   <tr>
     <td><%= address.customer.first_name %></td>
      <td><%= address.customer.last_name %></td>
+      <td><%= address.street_no %></td>
     <td><%= address.street_name %></td>
     <td><%= address.area_name %></td>
     <td><%= address.landmark %></td>
@@ -35,7 +37,7 @@
     <td><%= address.postal_code %></td>
     <td><%= address.state %></td>
     <td><%= address.country %></td>
-    <td><%= address.street_no %></td>
+   
     <td><%= link_to  address, :class => 'btn btn-xs btn-warning',:title => 'Show', :rel => 'tooltip' do%>
               <span class="glyphicon glyphicon-eye-open"></span> Show
               <%end%></td>
@@ -48,5 +50,8 @@
               <% end %></td>
   </tr>
 <% end %>
+<tr>
+ <td colspan="20" align="center"><%= will_paginate @addresses, renderer: BootstrapPagination::Rails , previous_label: "Older", next_label: "Newer", inner_window: 1 %></td>
+ </tr>
 </table>
 

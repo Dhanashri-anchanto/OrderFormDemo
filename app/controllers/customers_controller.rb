@@ -85,9 +85,7 @@ if Customer.where(email: @customer.email).empty?
   end
 else
   flash[:notice] = 'Customer already Exists'
-  render action: "new" , flash: {notice: "Customer already Exists"}
-
- 
+  render action: "new" , flash: {notice: "Customer already Exists"} 
 
 end
 end

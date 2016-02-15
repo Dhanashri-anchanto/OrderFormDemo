@@ -3,6 +3,8 @@ class Customer < ActiveRecord::Base
 	attr_accessible :addresses_attributes
 	has_many :addresses, :dependent => :destroy
 	has_many :orders
+	#belongs_to :order
 	accepts_nested_attributes_for :addresses, :allow_destroy => true
 	validates :email, :mobile, :first_name, :last_name,  presence: true
+	validates :mobile, numericality: true
 end

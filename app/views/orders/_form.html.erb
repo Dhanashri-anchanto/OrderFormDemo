@@ -30,7 +30,7 @@
                      <%= f.label "First Name :" %>
                 </div>
                   <div class="col-md-6 col-md-pull-2">
-                      <%= f.text_field :first_name, id: "first_name", :required => true,:readonly => true %><br/>
+                      <%= f.text_field :first_name, id: "first_name", :required => true %><br/>
                   </div>
              </div>
 
@@ -39,7 +39,7 @@
                        <%= f.label "Last Name :" %>
                   </div>
                    <div class="col-md-6 col-md-pull-2">
-                       <%= f.text_field :last_name, id: "last_name", :required => true,:readonly => true %><br/>
+                       <%= f.text_field :last_name, id: "last_name", :required => true %><br/>
                    </div>
               </div>
 
@@ -64,6 +64,81 @@
                      </div>
                      <div class="col-md-6 col-md-pull-2" id="mylist">
                           <%= f.text_area :shipping_address, id: "add1", rows: 3, cols: 30, :required => true %>
+
+<!--
+                          <div class="row">
+<div class="col-sm-3">
+  <%= f.label :street_no %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id , :required => true , id: 1%>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :street_name %>
+ </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id, :required => true, id: 2 %>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :area_name %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id, :required => true,id: 3%>
+ </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :landmark %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id , :required => true, id: 4%>
+ </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :city %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id, :required => true,id: 5 %>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :postal_code %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id, :required => true, id: 6 %>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :state %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id , :required => true, id: 7%>
+ </div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= f.label :country %>
+  </div>
+  <div class="col-sm-6">
+  <%= f.text_field :customer_id, :required => true, id: 8 %>
+</div>
+</div>
+-->
+
                           
                      </div>
                 </div>
@@ -257,6 +332,13 @@
                                     var id = this.id
                                     var lastChar = id.substr(id.length - 1); // => "1"  
                                     var add = document.getElementById("para_" + lastChar).childNodes[0].nodeValue;  
+
+                                    //code to add address in separate fields by splitting
+
+                                    //for ( var i = 0; i < add.length; i++ ) {
+                                      console.log(add.split(' '))
+                                    //}
+                                    //code to add address in given single address field
                                     $("#add1").val("");
                                     $("#add1").val(add);
                                   });

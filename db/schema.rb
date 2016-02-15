@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160212091141) do
+ActiveRecord::Schema.define(:version => 20160215124549) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "customer_id"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20160212091141) do
     t.integer  "order_value"
     t.string   "payment_collection"
     t.string   "special_instruction"
-    t.integer  "address_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "customer_id"
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20160212091141) do
     t.string   "shipping_address"
   end
 
-  add_index "orders", ["address_id"], :name => "index_orders_on_address_id"
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
 
   create_table "products", :force => true do |t|

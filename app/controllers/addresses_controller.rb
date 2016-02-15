@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = Address.paginate(page: params[:page], per_page: 5)
    # @address = Address.where(:customer_id => @addresses.customer_id)
 
 
