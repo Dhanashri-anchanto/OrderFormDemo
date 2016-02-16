@@ -33,9 +33,10 @@
     <%= render 'layouts/header' %>
     <div class="row">
       <div class="col-md-12">
-        <% flash.each do |message_type, message| %>
-        <%= render 'layouts/flash' %>
-        <% end %>
+        <% flash.each do |name, msg| %>
+<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+
         <%= yield %>
         <%= render 'layouts/footer' %>
       </div>

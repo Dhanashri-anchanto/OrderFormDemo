@@ -30,7 +30,7 @@ class AddressesController < ApplicationController
   # GET /addresses/new
   # GET /addresses/new.json
   def new
-    @address = Address.new
+    @address = Address.first_or_create
 
     respond_to do |format|
       format.html # new.html.erb
