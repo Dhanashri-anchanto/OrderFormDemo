@@ -15,12 +15,11 @@ OrderDemo::Application.routes.draw do
    end
 
 
-  resources :addresses
-   # do
-   #  collection do
-   #      get 'customer_address'
-   #   end
-   # end
+  resources :addresses do
+    collection do
+        get 'address_count'
+     end
+   end
 
 
 

@@ -1,393 +1,461 @@
 
 <%= form_for(@order) do |f| %>
-<% if @order.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-  <ul>
-    <% @order.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </div>
     <% end %>
-  </ul>
-</div>
-<% end %>
+
 <div class="panel panel-default">
-  <div class="panel-heading">Customer Details</div>
+      <div class="panel-heading">Customer Details</div>
     <div class="panel-body">
+          <%= f.fields_for :customer, @cust = @order.build_customer do |builder| %>
+            <div class="row">
+              <div class="col-md-6 ">
+                  <%= f.label "Enter Customer Email Id :" %>
+              </div>
+              <div class="col-md-6 col-md-pull-2">               
+                <%= builder.text_field :email, id: "input", :required => true %><br/>
+                <%= f.label " Email for Order:" %>
+                <%= f.text_field :email, id: "input1", :required => true %><br/>
+                <%#= f.label " Cust ID :" %>
+                <%#= builder.text_field :id, id: "cid"%>
+                 <%= f.label " Cust ID for Orders :" %>
+                <%= f.text_field :customer_id, id: "cid1"%>
+              </div>
+            </div>
 
             <div class="row">
-                <div class="col-md-6 ">
-                   <%= f.label "Enter Customer Email Id :" %>
+              <div class="col-md-6">
+                <%= f.label "First Name :" %>
+              </div>
+              <div class="col-md-6 col-md-pull-2">
+                <%= builder.text_field :first_name, id: "first_name", :required => true %><br/>
+                 <%= f.label "First Name  for Order:" %>
+                <%= f.text_field :first_name, id: "first_name1", :required => true %><br/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.label "Last Name :" %>
+              </div>
+              <div class="col-md-6 col-md-pull-2">
+                  <%= builder.text_field :last_name, id: "last_name", :required => true %><br/>
+                    <%= f.label "Last Name  for Order:" %>
+                  <%= f.text_field :last_name, id: "last_name1", :required => true %><br/>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                  <%= f.label "Mobile No :" %>
                 </div>
                 <div class="col-md-6 col-md-pull-2">
-                <%= f.fields_for :customer do |builder| %>
-                   <%= builder.text_field :email, id: "input", :required => true %><br/>
-                   <%#= f.text_field :email, id: "input", :required => true %><br/>
-                   <%=builder.hidden_field :id, id: "cid"%>
-                    <%#=f.hidden_field :customer_id, id: "cid"%>
+                  <%= builder.text_field :mobile, id: "mobile", :required => true %>  <br/>
+                  <%= f.label "Mobile No for Orders:" %>
+                  <%= f.text_field :mobile, id: "mobile1", :required => true %>  
+                </div>
+            </div>
+         
+             </div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Address Details</div>
+        <div class="panel-body">
+            <%= builder.fields_for :addresses, @cust.addresses.build do |add| %>
+            <div class="row">
+                <div class="col-md-6">
+                    <%= f.label "Shipping Address :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                    <%#= f.text_area :shipping_address, id: "add1", rows: 3, cols: 30, :required => true %>
                 </div>
             </div>
 
-             <div class="row">
-                 <div class="col-md-6">
-                     <%= f.label "First Name :" %>
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :street_no %>
                 </div>
-                  <div class="col-md-6 col-md-pull-2">
-                      <%= builder.text_field :first_name, id: "first_name", :required => true %>
-                      <%#= f.text_field :first_name, id: "first_name", :required => true %><br/>
-                  </div>
-             </div>
-
-             <div class="row">
-                 <div class="col-md-6">
-                       <%= f.label "Last Name :" %>
-                  </div>
-                   <div class="col-md-6 col-md-pull-2">
-                       <%= builder.text_field :last_name, id: "last_name", :required => true %>
-                       <%#= f.text_field :last_name, id: "last_name", :required => true %><br/>
-                   </div>
-              </div>
-
-              <div class="row">
-                     <div class="col-md-6">
-                          <%= f.label "Mobile No :" %>
-                     </div>
-                     <div class="col-md-6 col-md-pull-2">
-                           <%= builder.text_field :mobile, id: "mobile", :required => true %>  
-                            <%#= f.text_field :mobile, id: "mobile", :required => true %>  
-                     </div>
-              </div>
-              <%end%>
-          </div>
-      </div>
-
-
-  <div class="panel panel-default">
-       <div class="panel-heading">Address Details</div>
-          <div class="panel-body">
-               <div class="row">
-                     <div class="col-md-6">
-                          <%= f.label "Your Shipping Address :" %>
-                     </div>
-                     <div class="col-md-6 col-md-pull-2" id="mylist">
-                          <%= f.text_area :shipping_address, id: "add1", rows: 3, cols: 30, :required => true %>
-
- <%= f.fields_for :address do |builder| %>
-                          <div class="row">
-<div class="col-sm-3">
-  <%= f.label :street_no %>
-  </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :street_no , :required => true , id: 1%>
-  <%#= f.text_field :customer_id , :required => true , id: 1%>
-</div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :street_name %>
- </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :street_name, :required => true, id: 2 %>
-  <%#= f.text_field :customer_id, :required => true, id: 2 %>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :area_name %>
-  </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :area_name, :required => true,id: 3%>
-  <%#= f.text_field :customer_id, :required => true,id: 3%>
- </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :landmark %>
-  </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :landmark , :required => true, id: 4%>
-  <%#= f.text_field :customer_id , :required => true, id: 4%>
- </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :city %>
-  </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :city, :required => true,id: 5 %>
-  <%#= f.text_field :customer_id, :required => true,id: 5 %>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :postal_code %>
-  </div>
-  <div class="col-sm-6">
-   <%= builder.text_field :postal_code, :required => true, id: 6 %>
-  <%#= f.text_field :customer_id, :required => true, id: 6 %>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :state %>
-  </div>
-  <div class="col-sm-6">
-   <%= builder.text_field :state , :required => true, id: 7%>
-  <%#= f.text_field :customer_id , :required => true, id: 7%>
- </div>
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-  <%= f.label :country %>
-  </div>
-  <div class="col-sm-6">
-  <%= builder.text_field :country, :required => true, id: 8 %>
-  <%#= f.text_field :address_id, :required => true, id: 8, id: 9 %>
-</div>
-</div>
-<%end%>
-
-                          
-                     </div>
+                <div class="col-sm-6">
+                  
+                    <%= add.text_field :street_no , :required => true , id: 1%>
+                    <%#= f.label :add_id_for_address %>
+                    <%#= builder.text_field :id, id: "add_id"%>
+              
                 </div>
-     
-        </div>
- </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :street_name %>
+                </div>
+                <div class="col-sm-6">
+                     <%= add.text_field :street_name, :required => true, id: 2 %>
+                      <%#= f.text_field :customer_id, :required => true, id: 2 %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                  <%= f.label :area_name %>
+                </div>
+                <div class="col-sm-6">
+                    <%= add.text_field :area_name, :required => true,id: 3%>
+                    <%#= f.text_field :customer_id, :required => true,id: 3%>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                  <%= f.label :landmark %>
+                </div>
+                <div class="col-sm-6">
+                  <%= add.text_field :landmark , :required => true, id: 4%>
+                  <%#= f.text_field :customer_id , :required => true, id: 4%>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :city %>
+                </div>
+                <div class="col-sm-6">
+                    <%= add.text_field :city, :required => true,id: 5 %>
+                    <%#= f.text_field :customer_id, :required => true,id: 5 %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :postal_code %>
+                </div>
+                <div class="col-sm-6">
+                    <%= add.text_field :postal_code, :required => true, id: 6 %>
+                    <%#= f.text_field :customer_id, :required => true, id: 6 %>
+                </div>
+            </div>
 
- <div class="panel panel-default">
-     <div class="panel-heading">Order Details</div>
-          <div class="panel-body">
-               <div class="row">
-                   <div class="col-md-6">
-                        <%= f.label "Order No :" %><br />
-                  </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :state %>
+                </div>
+                <div class="col-sm-6">
+                    <%= add.text_field :state , :required => true, id: 7%>
+                    <%#= f.text_field :customer_id , :required => true, id: 7%>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <%= f.label :country %>
+                </div>
+                <div class="col-sm-6">
+                    <%= add.text_field :country, :required => true, id: 8 %>
+                     <%= f.label :address_id_for_address %>
+                    <%= f.text_field :address_id,  id: 9 %>
+                     <%#= f.label :customer_id_for_address %>
+                    <%#= builder.text_field :customer_id,  id: 10 %>
+                    <%#= builder.text_field :customer_id, :required => true, id: 8 %>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-sm-6 col-sm-push-6" id="mylist">
+                    
+                </div>
+            </div>
+            
+           <%end%>
+           <%end%>
+    </div>
+</div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Order Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                          <%= f.label "Order No :" %><br />
+                    </div>
                     <div class="col-md-6 col-md-pull-2">
                           <%= f.text_field :order_no, :required => true %>
                     </div>
-              </div>
-
-              <div class="row">
-                     <div class="col-md-6">
-                         <%= f.label "Tracking No :" %>
-                    </div>
-                   <div class="col-md-6 col-md-pull-2">
-                         <%= f.text_field :tracking_no, :required => true %>
-                   </div>
-             </div>
-
-            <div class="row">
-                 <div class="col-md-6">
-                      <%= f.label "Delivery Date :" %>
-                 </div>
-                <div class="col-md-6 col-md-pull-2">
-                      <%= f.date_select :delivery_date, :required => true %>
-                 </div>
-            </div>
-
-            <div class="row">
-                 <div class="col-md-6">
-                    <%= f.label "Is Express Delivery ?" %>
-                 </div>
-                <div class="col-md-6 col-md-pull-2">
-                    <%= f.check_box :is_express_delivery %>
-                    <%= f.label "(Check if 'YES')" %>
-                 </div>
-           </div>
-
-          <div class="row">
-              <div class="col-md-6">
-                   <%= f.label "Is Customer Pickup ?" %>
-              </div>
-              <div class="col-md-6 col-md-pull-2">
-                  <%= f.check_box :is_customer_pickup %>
-                  <%= f.label "(Check if 'YES')" %>
-              </div>
-          </div>
-
-         <div class="row">
-               <div class="col-md-6">
-                  <%= f.label "Delivery Slot :" %>
                 </div>
-                <div class="col-md-6 col-md-pull-2">
-                   <%=f.select :delivery_slot, options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
-                </div>
-          </div>
 
-          <div class="row">
+                <div class="row">
                 <div class="col-md-6">
-                     <%= f.label "Carrier :" %>
+                <%= f.label "Tracking No :" %>
                 </div>
                 <div class="col-md-6 col-md-pull-2">
-                   
-                    <%= f.select :carrier, options_for_select([ "FBA", "PDF", "SIP", "DIP" ]), :class => 'form-control', :required => true  %>
+                <%= f.text_field :tracking_no, :required => true %>
                 </div>
-          </div>
+                </div>
 
-          <div class="row">
+                <div class="row">
                 <div class="col-md-6">
-                    <%= f.label "Order Currency :" %>
+                <%= f.label "Delivery Date :" %>
                 </div>
                 <div class="col-md-6 col-md-pull-2">
-                     <%=  f.select :order_currency, options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]), :class => 'form-control', :required => true  %>
-                 </div>
-          </div>
+                <%= f.date_select :delivery_date, :required => true %>
+                </div>
+                </div>
 
-         <br/><br/>
-                      <div class="panel panel-default">
-                             <div class="panel-heading">Add Line Items to Cart</div>
-                                    <div class="panel-body">
-                                           <%= f.fields_for :line_items do |builder| %>
-                                           <%=  render 'line_item_fields', :f => builder %>
-                                            <% end %>
-        
-                                            <%= link_to_add_fields "Add Line_items", f, :line_items %>
-                                     </div>
-                      </div>
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Is Express Delivery ?" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%= f.check_box :is_express_delivery %>
+                <%= f.label "(Check if 'YES')" %>
+                </div>
+                </div>
 
-               <div class="row">
-                   <div class="col-md-6">
-                       <%= f.label "Order Value :" %>
-                    </div>
-                    <div class="col-md-6 col-md-pull-2">
-                        <%= f.text_field :order_value, :required => true %>
-                    </div>
-              </div>
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Is Customer Pickup ?" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%= f.check_box :is_customer_pickup %>
+                <%= f.label "(Check if 'YES')" %>
+                </div>
+                </div>
 
-              <div class="row">
-                  <div class="col-md-6">
-                       <%= f.label "Payment Collection :" %>
-                  </div>
-                  <div class="col-md-6 col-md-pull-2">
-                          <%=f.select :payment_collection, options_for_select([ "PayU Money  ", " MasterCard Payment Gateway", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]), :class => 'form-control', :required => true  %>
-                  </div>
-              </div>
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Delivery Slot :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%=f.select :delivery_slot, options_for_select([ "Morning", "Noon", "Evening", "Night" ]), :class => 'form-control', :required => true  %>
+                </div>
+                </div>
 
-              <div class="row">
-                   <div class="col-md-6">
-                      <%= f.label "Special Instruction :" %>
-                    </div>
-                      <div class="col-md-6 col-md-pull-2">
-                           <%= f.text_field :special_instruction, :required => true %>
-                    </div>
-              </div>
-              <br/><br/>
-              <div class="row">
-                  <div class="col-md-6 col-md-push-8">
-                      <%= button_tag( :class => 'btn btn-primary', :title => 'Save', :rel => 'tooltip') do %>
-       Save<span class="glyphicon glyphicon-floppy-save"></span> 
-   <% end %>
-                   </div>
-              </div>
-      </div>
-  </div>
- <% end %>
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Carrier :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+
+                <%= f.select :carrier, options_for_select([ "FBA", "PDF", "SIP", "DIP" ]), :class => 'form-control', :required => true  %>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Order Currency :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%=  f.select :order_currency, options_for_select([ "USD", "INR", "EUR", "AFN", "AUD", "JPY"]), :class => 'form-control', :required => true  %>
+                </div>
+                </div>
+
+                <br/><br/>
+                <div class="panel panel-default">
+                <div class="panel-heading">Add Line Items to Cart</div>
+                <div class="panel-body">
+                <%= f.fields_for :line_items do |builder| %>
+                <%=  render 'line_item_fields', :f => builder %>
+                <% end %>
+
+                <%= link_to_add_fields "Add Line_items", f, :line_items %>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Order Value :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%= f.text_field :order_value, :required => true %>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Payment Collection :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%=f.select :payment_collection, options_for_select([ "PayU Money  ", " MasterCard Payment Gateway", "NETbilling", "PayDollar", "PayU India", "DebitCard", "CreditCard"]), :class => 'form-control', :required => true  %>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                <%= f.label "Special Instruction :" %>
+                </div>
+                <div class="col-md-6 col-md-pull-2">
+                <%= f.text_field :special_instruction, :required => true %>
+                </div>
+                </div>
+                <br/><br/>
+                <div class="row">
+                <div class="col-md-6 col-md-push-8">
+                <%= button_tag( :class => 'btn btn-primary', :title => 'Save', :rel => 'tooltip') do %>
+                Save<span class="glyphicon glyphicon-floppy-save"></span> 
+                <% end %>
+                </div>
+                </div>
+        </div>
+    </div>
+<% end %>
 
 
 
 
- <script>
+<script>
   $("#input").keyup(function(){
-      var  x = document.getElementById("input").value;
-          $.ajax({
-                    type: 'GET',
-                    url:  "/customers/customer_details/",
-                    data: { email: escape(x)},
-                    dataType: 'json',
+    var  x = document.getElementById("input").value;
+    $.ajax({
+      type: 'GET',
+      url:  "/customers/customer_details/",
+      data: { email: escape(x)},
+      dataType: 'json',
 
-                    success: function(r){
-                     v = r['variant'];
-                     console.log(v)
-                     $("#first_name").val(r['first_name']);
-                     $("#last_name").val(r['last_name']);
-                     $("#mobile").val(r['mobile']);
-                     $("#cid").val(r['id']);
-                      }
-                });
+      success: function(r){
+        v = r['variant'];
+        console.log(v)
+
+        $("#first_name").val(r['first_name']);
+        $("#last_name").val(r['last_name']);
+        $("#mobile").val(r['mobile']);
+        $("#cid").val(r['id']);
+        $("#input1").val(r['email']);
+        $("#first_name1").val(r['first_name']);
+        $("#last_name1").val(r['last_name']);
+        $("#mobile1").val(r['mobile']);
+        $("#cid1").val(r['id']);
+         $("#10").val(r['id']);
+      }
+    });
   });
 
 
 
   $("#input").keyup(function(){
-                var  x = document.getElementById("input").value;
-                $.ajax({
-                           type: 'GET',
-                          url:  "/customers/customer_address"  ,
-                          data: { email: escape(x)},
-                          dataType: 'json',
+    var  x = document.getElementById("input").value;
+    $.ajax({
+      type: 'GET',
+      url:  "/customers/customer_address"  ,
+      data: { email: escape(x)},
+      dataType: 'json',
 
-                          success: function(r){
-                           v = r['variant'];
-                           console.log(v)
-                          $("#add1").val("");
-                          for ( var i = 0; i < r.length; i++ ) {
-                                    var para = document.createElement("label");
+      success: function(r){
+        v = r['variant'];
+        console.log(v)
+        $("#add1").val("");
+        for ( var i = 0; i < r.length; i++ ) {
+          var para = document.createElement("label");
 
-                                    var input = document.createElement("input");
-                                    input.setAttribute("type", "hidden");
+          var input = document.createElement("input");
+          input.setAttribute("type", "hidden");
 
 
-                                    console.log("!!!!!!!!")
-                                    //console.log(r[i])
-                                    var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
-                                    var b = r[i]['id']
-                                    var t = document.createTextNode(a);
-                                    var s = document.createTextNode(b);
+          console.log("!!!!!!!!")
+//console.log(r[i])
+          var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
+              var b = r[i]['id']
+              var t = document.createTextNode(a);
+              var s = document.createTextNode(b);
 
-                                    para.appendChild(t);
-                                    para.appendChild(s);
-                                    para.id = "para_"+i ;
-                                    document.getElementById("mylist").appendChild(para);
-                                    //alert(para.id);
-                                    var btn = document.createElement("BUTTON");
-                                    var t = document.createTextNode("Add Address");
-                                        btn.setAttribute("type","button");
-                                    btn.appendChild(t);
-                                    btn.id = "btn_"+i;
-                                    document.getElementById("mylist").appendChild(btn);
-                                    //alert(btn.id);
-                                  }
+              para.appendChild(t);
+              para.appendChild(s);
+              para.id = "para_"+i ;
+              document.getElementById("mylist").appendChild(para);
+              //alert(para.id);
+              var btn = document.createElement("BUTTON");
+              var t = document.createTextNode("Add Address");
+              btn.setAttribute("type","button");
+              btn.appendChild(t);
+              btn.id = "btn_"+i;
+              document.getElementById("mylist").appendChild(btn);
+              //alert(btn.id);
+              }
 
-                          $("button").click(function(){
-                                    var id = this.id
-                                    var lastChar = id.substr(id.length - 1); // => "1"  
-                                    var add = document.getElementById("para_" + lastChar).childNodes[0].nodeValue;  
-                                    var add1 = document.getElementById("para_" + lastChar).childNodes[1].nodeValue;  
-                                    console.log("===="+ add1)
+              $("button").click(function(){
+                var id = this.id
+              var lastChar = id.substr(id.length - 1); // => "1"  
+              var add = document.getElementById("para_" + lastChar).childNodes[0].nodeValue;  
+              var add1 = document.getElementById("para_" + lastChar).childNodes[1].nodeValue;  
+              console.log("===="+ add1)
 
-                                    //code to add address in separate fields by splitting
+              //code to add address in separate fields by splitting
 
-                                    //for ( var i = 0; i < add.length; i++ ) {
-                                      console.log(add.split(' '))
-                                       var temp = add.split(' ')
-                                      
-                                        $("#1").val(temp[0]);
-                                        $("#2").val(temp[1]);
-                                        $("#3").val(temp[2]);
-                                        $("#4").val(temp[3]);
-                                        $("#5").val(temp[4]);
-                                        $("#6").val(temp[5]);
-                                        $("#7").val(temp[6]);
-                                        $("#8").val(temp[7]);
-                                        $("#9").val(add1);
-                                     
-                                    //}
-                                    //code to add address in given single address field
-                                    $("#add1").val("");
-                                    $("#add1").val(add);
-                                  });
-                          }
-                      });
-      });
+              //for ( var i = 0; i < add.length; i++ ) {
+                console.log(add.split(' '))
+                var temp = add.split(' ')
 
-$(document).ready(function(){
- $("#add1").val("");
-});
+                $("#1").val(temp[0]);
+                $("#2").val(temp[1]);
+                $("#3").val(temp[2]);
+                $("#4").val(temp[3]);
+                $("#5").val(temp[4]);
+                $("#6").val(temp[5]);
+                $("#7").val(temp[6]);
+                $("#8").val(temp[7]);
+                $("#9").val(add1);
+                $("#add_id").val(add1);
+
+              //}
+              //code to add address in given single address field
+              $("#add1").val("");
+              $("#add1").val(add);
+              });
+              }
+              });
+              });
+
+
+
+              $(document).ready(function(){
+                $("#add1").val("");
+
+
+    $.ajax({
+      type: 'GET',
+      url:  "/addresses/address_count/",
+      //data: { email: escape(x)},
+      dataType: 'json',
+
+      success: function(r){
+        v = r['variant'];
+        var a = r.length
+        console.log(a)
+        var y = r[a-1]["id"]
+        console.log(y)
+        $("#9").val(y+1);
+        //$("#add_id").val(y+1);
+
+
+      }
+    });
+
+$.ajax({
+      type: 'GET',
+      url:  "/customers/",
+      //data: { email: escape(x)},
+      dataType: 'json',
+
+      success: function(r){
+        v = r['variant'];
+        var a = r.length
+        console.log(a)
+        var y = r[a-1]["id"]
+         console.log(y)
+         $("#cid").val(y+1);
+         $("#cid1").val(y+1);
+
+
+      }
+    });
+
+
+
+
+              });
 </script>
 

@@ -26,16 +26,8 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-     @order.build_customer
-     @order.build_address
-    #@order.customer.new
-  # @order.address.new
-    #@order.customer.new
-    #@order.addresse.new
-    #@line_items = @order.line_items.new
-    #@line_items = @order.line_items.new
-    #@customer = Customer.first
-    #@addresses = @customer.addresses
+  #@order.build_customer
+     #@order.build_address
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,41 +44,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     #raise params.inspect
+
     @order = Order.new(params[:order])
-
-
-#    my_class = Customer.find_or_initialize_by_email(params[:customer])
-#    puts "========#{my_class}"
-#     my_class_one = Address.find_or_initialize_by_id(params[:address])
-
-# my_class.update_attributes(
-#   :email => my_class.email,
-#   :first_name => my_class.first_name,
-#   :last_name => my_class.last_name,
-#   :mobile => my_class.mobile
-  
-# )
-# my_class_one.update_attributes(
-#   :street_no => my_class_one.street_no,
-#   :street_name => my_class_one.street_name,
-#   :area_name => my_class_one.area_name,
-#   :landmark => my_class_one.landmark,
-#   :city => my_class_one.city,
-#   :postal_code => my_class_one.postal_code,
-#   :state => my_class_one.state,
-#   :country => my_class_one.country
-  
-# )
-   # @order.customer.build
-    #@order.address.build
-    #Customer.first_or_create
-    #Address.first_or_create
-
-    # if Customer.where(email: @customer.email).empty?
-    #       @order.customer.build
-    #        @order.address.build    
     
-    # else
       respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -96,7 +56,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
-  #end
+
   end
 
   # PUT /orders/1

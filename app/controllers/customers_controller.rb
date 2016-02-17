@@ -74,7 +74,7 @@ def create
   # my_class = Customer.find_or_initialize_by_email(params[:customer])
   #@customer.addresses.build
 # @customer.order.build
-#if Customer.where(email: @customer.email).empty?
+if Customer.where(email: @customer.email).empty?
   respond_to do |format|
     if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -84,11 +84,11 @@ def create
         format.json { render json: @customer.errors, status: :unprocessable_entity }
     end
   end
-# else
-#   flash[:notice] = 'Customer already Exists'
-#   render action: "new" , flash: {notice: "Customer already Exists"} 
+else
+  flash[:notice] = 'Customer already Exists'
+  render action: "new" , flash: {notice: "Customer already Exists"} 
 
-# end
+end
 end
 # end
 

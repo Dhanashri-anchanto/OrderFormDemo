@@ -12,6 +12,17 @@ class AddressesController < ApplicationController
     end
   end
 
+  def address_count
+    @addresses = Address.all
+   # @address = Address.where(:customer_id => @addresses.customer_id)
+
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @addresses }
+    end
+  end
+
   # GET /addresses/1
   # GET /addresses/1.json
   def show
