@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @li = @order.line_items
+    @cust = @order.customer
+    @add = @order.address
 
     respond_to do |format|
       format.html # show.html.erb

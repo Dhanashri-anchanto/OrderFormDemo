@@ -3,7 +3,6 @@ class Customer < ActiveRecord::Base
 	attr_accessible :addresses_attributes
 	has_many :addresses, :dependent => :destroy
 	has_many :orders
-	#belongs_to :order
 	accepts_nested_attributes_for :addresses, :allow_destroy => true
 	validates :email, :mobile, :first_name, :last_name,  presence: true
 	validates :mobile, numericality: true
@@ -13,10 +12,10 @@ class Customer < ActiveRecord::Base
 
 	def autosave_associated_records_for_address
     # Find or create the address by id
-    if new_address = (Address.where(:street_no => address.street_no, :street_name => address.street_name,:area_name => address.area_name,:landmark => address.landmark ,:postal_code => address.postal_code,:city => address.city,:state => address.state,:country => address.country).first rescue nil)
-      self.address = new_address
+    if new_addresses = (Address.where(:street_no => address.street_no, :street_name => address.street_name,:area_name => address.area_name,:landmark => address.landmark ,:postal_code => address.postal_code,:city => address.city,:state => address.state,:country => address.country).first rescue nil)
+      self.addresses = new_addresses
     else
-      self.address.save!
+      self.addresses.save!
     end
   end
 end
