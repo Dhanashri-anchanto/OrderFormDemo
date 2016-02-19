@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
            presence: true
 
 
+
   def customer_attributes=(attrs)
     self.customer = Customer.where(attrs).first_or_initialize(attrs) 
     @show_exists_message = !customer.new_record?
@@ -21,5 +22,8 @@ class Order < ActiveRecord::Base
   def address_attributes=(attrs)
     self.address = Address.where(attrs).first_or_initialize(attrs) 
     @show_exists_message = !address.new_record?
+
+
+  
   end
 end
