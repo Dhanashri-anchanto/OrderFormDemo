@@ -16,14 +16,47 @@
      </div>
      </div>
 
+<div class="panel-body">
+    <div class="panel panel-info">
+           <div class="panel-heading"><h5>Customer Details</h5></div>
+                <div class="panel-body">
+       
+                      <p>
+                        <b>First Name :</b>
+                        <%= @cust.first_name %>
+                      </p>
+                      <p>
+                        <b>Last Name :</b>
+                        <%= @cust.last_name %>
+                      </p>
+                      <p>
+                        <b>Email Id:</b>
+                        <%= @cust.email %>
+                      </p>
+                      <p>
+                        <b>Mobile No.:</b>
+                        <%= @cust.mobile %>
+                      </p>
+                 </div>
+    </div>
+     <div class="panel panel-info">
+           <div class="panel-heading"><h5>Shipping Address Details</h5></div>
+                <div class="panel-body">
+       
+                      <p>
+                        <b>Shipping Address :</b>
+                        <%= @add.street_no %>
+                        <%= @add.street_name %>
+                        <%= @add.area_name %>
+                        <%= @add.landmark %>
+                        <%= @add.city %>
+                        <%= @add.postal_code %>
+                        <%= @add.state %>
+                        <%= @add.country %>
 
-
-
-
-
-
-
-
+                      </p>
+                 </div>
+    </div>
 
 
 
@@ -102,20 +135,16 @@
     <% @li.each do |li| %>
     <tr>
       <td ><%= li.sku %></td>
-       <td ><%= li.product_name %></td>
-
- <td ><%= li.description %></td>
-
- <td ><%= li.qty %></td>
- <td ><%= li.price %></td>
- </tr>
- <%end%>
+      <td ><%= li.product_name %></td>
+      <td ><%= li.description %></td>
+      <td ><%= li.qty %></td>
+      <td ><%= li.price %></td>
+    </tr>
+    <%end%>
  </table>
-
 </div>
 </div>
-
-    </div>  
-    </div>
-  </div>
+</div>  
+</div>
+</div>
 
