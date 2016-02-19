@@ -15,19 +15,8 @@
       <% end %>
      </div>
      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="panel panel-info">
+     
+     <div class="panel panel-info">
                 <div class="panel-body">
        
       <p>
@@ -67,7 +56,7 @@
 
       <p>
         <b>Order currency:</b>
-        <%= @order.order_currency %>
+        <%= @order.try(:order_currency) %>
       </p>
 
       <p>
