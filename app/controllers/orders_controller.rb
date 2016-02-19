@@ -31,6 +31,8 @@ class OrdersController < ApplicationController
   #@order.build_customer
      #@order.build_address
 
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -51,6 +53,7 @@ class OrdersController < ApplicationController
     
       respond_to do |format|
       if @order.save
+         @order.address.update_attributes(:customer_id => @order.customer_id)
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else

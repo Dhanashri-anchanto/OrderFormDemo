@@ -6,23 +6,19 @@
   <div class="col-sm-8">
     <div class="panel panel-info">
       <div class="panel-heading"><h3>Order Details</h3>
-      <div align="right"><%= link_to  edit_order_path(@order) ,:class => 'btn  btn-info',:title => 'Edit', :rel => 'tooltip' do %>
-
-      <span class="glyphicon glyphicon-edit"></span> Edit  
-      <% end %>
-      <%= link_to  orders_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
-      <span class="glyphicon glyphicon-step-backward"></span> Back
-      <% end %>
-     </div>
-     </div>
-
-
-<div class="panel-body">
-    <div class="panel panel-info">
-           <div class="panel-heading"><h5>Customer Details</h5></div>
+          <div align="right"><%= link_to  edit_order_path(@order) ,:class => 'btn  btn-info',:title => 'Edit', :rel => 'tooltip' do %>
+            <span class="glyphicon glyphicon-edit"></span> Edit  
+            <% end %>
+            <%= link_to  orders_path , class: "btn btn-default", :title => 'Back', :rel => 'tooltip' do %>
+            <span class="glyphicon glyphicon-step-backward"></span> Back
+            <% end %>
+          </div>
+    </div>
+    <div class="panel-body">
+          <div class="panel panel-info">
+              <div class="panel-heading"><h5>Customer Details</h5></div>
                 <div class="panel-body">
-       
-                      <p>
+                     <p>
                         <b>First Name :</b>
                         <%= @cust.first_name %>
                       </p>
@@ -39,11 +35,10 @@
                         <%= @cust.mobile %>
                       </p>
                  </div>
-    </div>
-     <div class="panel panel-info">
-           <div class="panel-heading"><h5>Shipping Address Details</h5></div>
-                <div class="panel-body">
-       
+        </div>
+           <div class="panel panel-info">
+              <div class="panel-heading"><h5>Shipping Address Details</h5></div>
+                  <div class="panel-body">
                       <p>
                         <b>Shipping Address :</b>
                         <%= @add.street_no %>
@@ -57,14 +52,9 @@
 
                       </p>
                  </div>
-    </div>
-
-
-
-    <div class="panel panel-info">
-
-      <div class="panel-body">
-       
+            </div>
+       <div class="panel panel-info">
+      <div class="panel-body">       
       <p>
         <b>Order no:</b>
         <%= @order.order_no %>
@@ -124,28 +114,27 @@
       <h5><b>List of Ordered Products :</b></h5>
       <br/>
       <table id="t01" class="table table-striped table-hover">
+            <tr class="header">
 
-    <tr class="header">
+              <th>Sku</th>
+              <th>Product Name</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
 
-      <th>Sku</th>
-      <th>Product Name</th>
-      <th>Description</th>
-      <th>Quantity</th>
-      <th>Total Price</th>
-
-    </tr>
-    <% @li.each do |li| %>
-    <tr>
-      <td ><%= li.sku %></td>
-      <td ><%= li.product_name %></td>
-      <td ><%= li.description %></td>
-      <td ><%= li.qty %></td>
-      <td ><%= li.price %></td>
-    </tr>
-    <%end%>
+            </tr>
+            <% @li.each do |li| %>
+            <tr>
+              <td ><%= li.sku %></td>
+              <td ><%= li.product_name %></td>
+              <td ><%= li.description %></td>
+              <td ><%= li.qty %></td>
+              <td ><%= li.price %></td>
+            </tr>
+            <%end%>
       </table>
       </div>
-    </div>
+      </div>
 </div>  
 
 

@@ -21,9 +21,6 @@ class Order < ActiveRecord::Base
 
   def address_attributes=(attrs)
     self.address = Address.where(attrs).first_or_initialize(attrs) 
-    @show_exists_message = !address.new_record?
-
-
-  
+    @show_exists_message = !address.new_record?  
   end
 end
