@@ -304,26 +304,21 @@
 
 
   $("#input").keyup(function(){
-    var  x = document.getElementById("input").value;
-    $.ajax({
-      type: 'GET',
-      url:  "/customers/customer_address"  ,
-      data: { email: escape(x)},
-      dataType: 'json',
+      var  x = document.getElementById("input").value;
+      $.ajax({
+          type: 'GET',
+          url:  "/customers/customer_address"  ,
+          data: { email: escape(x)},
+          dataType: 'json',
 
-      success: function(r){
-        v = r['variant'];
-        console.log(v)
-        for ( var i = 0; i < r.length; i++ ) {
-          var para = document.createElement("label");
-
-          var input = document.createElement("input");
-          input.setAttribute("type", "hidden");
-
-
-          console.log("!!!!!!!!")
-//console.log(r[i])
-          var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
+          success: function(r){
+              v = r['variant'];
+              console.log(v)
+              for ( var i = 0; i < r.length; i++ ) {
+              var para = document.createElement("label");
+              var input = document.createElement("input");
+              input.setAttribute("type", "hidden");
+              var a = r[i]['street_no']+ " "+r[i]["street_name"]+ " "+r[i]["area_name"]+ " "+r[i]["landmark"]+ " "+r[i]["city"]+ " "+r[i]["postal_code"]+ " "+r[i]["state"]+ " "+r[i]["country"]
               var b = r[i]['id']
               var t = document.createTextNode(a);
               var s = document.createTextNode(b);
@@ -365,9 +360,9 @@
                 $("#8").val(temp[7]);
                 $("#9").val(add1);
               });
-              }
-              });
-              });
+             }
+          });
+      });
 
 
 
