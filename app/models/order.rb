@@ -17,8 +17,8 @@ class Order < ActiveRecord::Base
 
   def autosave_associated_records_for_customer
     # Find or create the Customer by Email
-    if new_customer = Customer.find_by_email( customer.email )
-      new_customer.update_attributes( :first_name => customer.first_name,:last_name =>customer.last_name,:email => customer.email, :mobile => customer.mobile)
+    if new_customer = Customer.find_by_email(customer.email)
+      new_customer.update_attributes(:first_name => customer.first_name, :last_name => customer.last_name, :email => customer.email, :mobile => customer.mobile)
       self.customer = new_customer
           
     else
@@ -30,6 +30,7 @@ class Order < ActiveRecord::Base
     if new_address = (Address.where(:street_no => address.street_no, :street_name => address.street_name,:area_name => address.area_name,:landmark => address.landmark ,:postal_code => address.postal_code,:city => address.city,:state => address.state,:country => address.country).first rescue nil)
       #new_address.update_attributes(:street_no => address.street_no, :street_name => address.street_name,:area_name => address.area_name,:landmark => address.landmark ,:postal_code => address.postal_code,:city => address.city,:state => address.state,:country => address.country)
       self.address = new_address
+      
     else
       self.address.save!
     end
